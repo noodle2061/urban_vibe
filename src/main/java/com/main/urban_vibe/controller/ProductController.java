@@ -1,45 +1,44 @@
 package com.main.urban_vibe.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.main.urban_vibe.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
 
+    @Autowired
+    private ProductService productService;
+
     @GetMapping
-    public String getProducts(@RequestBody String x) {
-        // No business logic, just return an empty list
-        return x;
+    public ResponseEntity<String> getProducts(@RequestBody String productRequest) {
+        String response = productService.getProducts(productRequest); 
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping
-    public String updateProduct(@RequestBody String productDto) {
-        // No business logic, just return the received DTO
-        return productDto;
+    public ResponseEntity<String> updateProduct(@RequestBody String productDto) {
+        String response = productService.updateProduct(productDto);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
-    public String createProduct(@RequestBody String productDto) {
-        // No business logic, just return the received DTO
-        return productDto;
+    public ResponseEntity<String> createProduct(@RequestBody String productDto) {
+        String response = productService.createProduct(productDto);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping
-    public String deleteProduct(@RequestBody String productDto) {
-        // No business logic, just return ok
-        return productDto;
+    public ResponseEntity<String> deleteProduct(@RequestBody String productDeleteRequest) {
+        String response = productService.deleteProduct(productDeleteRequest); 
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
-    public String getProductDetail(@PathVariable Long id, @RequestBody String productVersion) {
-        // No business logic, just return an empty object or a dummy product
-        return productVersion;
+    public ResponseEntity<String> getProductDetail(@PathVariable String id) {
+        String response = productService.getProductById(id);
+        return ResponseEntity.ok(response);
     }
 }

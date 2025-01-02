@@ -1,24 +1,26 @@
 package com.main.urban_vibe.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.main.urban_vibe.services.CartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/cart")
 public class CartController {
 
+    @Autowired
+    private CartService cartService;
+
     @PutMapping
-    public String updateCart(@RequestBody String cartDto) {
-        // No business logic, just return the received DTO
-        return cartDto;
+    public ResponseEntity<String> updateCart(@RequestBody String cartDto) {
+        String response = cartService.updateCart(cartDto);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
-    public String getCart(@RequestBody String cart) {
-        // No business logic, just return an empty object
-        return cart;
+    public ResponseEntity<String> getCart(@RequestBody String entityRequest) {
+        String response = cartService.getCart(entityRequest); 
+        return ResponseEntity.ok(response);
     }
 }

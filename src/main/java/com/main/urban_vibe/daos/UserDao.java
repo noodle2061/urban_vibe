@@ -1,4 +1,4 @@
-package com.main.urban_vibe.daos;
+ package com.main.urban_vibe.daos;
 
 import com.main.urban_vibe.entities.User;
 import java.util.List;
