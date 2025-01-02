@@ -38,8 +38,8 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Long getProductDetail(@PathVariable Long id) {
+    public String getProductDetail(@PathVariable Long id, @RequestBody String productVersion) {
         // No business logic, just return an empty object or a dummy product
-        return id;
+        return productVersion;
     }
 }
